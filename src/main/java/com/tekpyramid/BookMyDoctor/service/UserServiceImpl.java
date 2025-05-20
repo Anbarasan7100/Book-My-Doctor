@@ -2,6 +2,7 @@ package com.tekpyramid.BookMyDoctor.service;
 
 import com.tekpyramid.BookMyDoctor.dto.UserLoginDto;
 import com.tekpyramid.BookMyDoctor.dto.UserSignUpDto;
+import com.tekpyramid.BookMyDoctor.dto.UserUpdateDto;
 import com.tekpyramid.BookMyDoctor.entity.User;
 import com.tekpyramid.BookMyDoctor.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,4 +44,22 @@ public class UserServiceImpl implements UserService{
 
         return "Login Successful " + user.getUserName();
     }
+
+    @Override
+    public String userUpdate(String email, UserUpdateDto userUpdateDto) {
+
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(()-> new RuntimeException("User not found"));
+
+        user.setUserName(userUpdateDto.getUserName());
+        user.setMobileNo(userUpdateDto.getMobileNo());
+        user.setAge(userUpdateDto.getAge());
+        user.setGender(userUpdateDto.getGender());
+
+        userRepository.save(user);
+
+        return "User Details updated successfully";
+    }
+
+
 }
