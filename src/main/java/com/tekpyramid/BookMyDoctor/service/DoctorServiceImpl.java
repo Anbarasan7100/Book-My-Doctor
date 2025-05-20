@@ -70,7 +70,7 @@ public class DoctorServiceImpl implements DoctorService{
                 availability.setDayOfWeek(availabilityDto.getDayOfWeek());
                 availability.setStartTime(availabilityDto.getStartTime());
                 availability.setEndTime(availabilityDto.getEndTime());
-                availability.setDoctorLocations(List.of(location));
+                availability.setDoctorLocation(location);
                 availabilityList.add(availability);
             }
             location.setAvailabilities(availabilityList);
