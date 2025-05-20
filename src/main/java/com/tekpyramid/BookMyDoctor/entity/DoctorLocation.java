@@ -39,13 +39,11 @@ public class DoctorLocation {
     @Column(nullable = false)
     private String country;
 
-    @ManyToMany(mappedBy = "doctorLocations")
-    private List<Doctor> doctors;
+    @ManyToOne
+    @JoinColumn(name = "doctorId", nullable = false)
+    private Doctor doctor;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "location_availability_map",
-            joinColumns = @JoinColumn(name = "location_id"),
-            inverseJoinColumns = @JoinColumn(name = "availability_id"))
+    @OneToMany(mappedBy = "doctorLocation", cascade = CascadeType.PERSIST)
     private List<DoctorAvailability> availabilities;
 
 }

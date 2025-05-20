@@ -58,10 +58,7 @@ public class Doctor {
     @OneToMany(mappedBy = "doctor",cascade = CascadeType.ALL)
     private List<Appointment> appointments;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "doctor_location_map",
-            joinColumns = @JoinColumn(name = "doctor_id"),
-            inverseJoinColumns = @JoinColumn(name = "location_id"))
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.PERSIST)
     private List<DoctorLocation> doctorLocations;
 
 }

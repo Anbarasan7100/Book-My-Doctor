@@ -5,7 +5,6 @@ import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.time.LocalTime;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,7 +31,8 @@ public class DoctorAvailability {
     @Column(nullable = false)
     private LocalTime endTime;
 
-    @ManyToMany(mappedBy = "availabilities")
-    private List<DoctorLocation> doctorLocations;
+    @ManyToOne
+    @JoinColumn(name = "locationId", nullable = false)
+    private DoctorLocation doctorLocation;
 
 }
